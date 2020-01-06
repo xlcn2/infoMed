@@ -140,7 +140,13 @@ $("#leftValues").change(function () {
     var selectedItem = $("#leftValues option:selected");
     $("#txtRight").val(selectedItem.text());
 });
-    
+  function validate(){
+    if($('#rightValues option').length<2){
+        alert('Selecione ao menos duas especialidades!');
+        return false;
+    }
+}
+      
   
     
 </script>

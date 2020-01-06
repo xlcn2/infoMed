@@ -26,8 +26,10 @@ class MedicoController extends Controller
 	{
         $tamanho = count($request->get('especialidades'));
       
-        
- 
+        if($tamanho<2){
+           return redirect()->back();
+        }
+    else{
         //salvar médico
         $medico = new Medico([
         'nome' => $request->get('nome'),
@@ -57,7 +59,7 @@ class MedicoController extends Controller
     
         
       return redirect('/')->with('success', 'Medico adicionado!');
-		
+    }
         
 	}
 
@@ -79,6 +81,11 @@ class MedicoController extends Controller
 
 	public function atualizarMedico(Request $request, $crm)
 	{
+        $tamanho = count($request->get('especialidades'));
+      
+        if($tamanho<2){
+           return redirect()->back();
+        }
       //atualizar especializações
         DB::beginTransaction();
         $especialidade = Especialidade::find($crm);
