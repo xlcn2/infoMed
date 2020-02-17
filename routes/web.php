@@ -13,23 +13,16 @@
 
 
 
-//paineis
-Route::get('/index', 'SiteController@index');
-Route::get('/contato', 'SiteController@contato');
-Route::get('/ativo/cadastro', 'AtivoController@cadastro');
-Route::get('/ativo/localizacao', 'AtivoController@localizacao');
-Route::get('/contato', 'SiteController@contato');
 
 
 
 
 //CRUDs
-//Locais
 	Route::get('/', 'MedicoController@gerenciador');
        
 
 		Route::get('/novo', function(){
-			return view('cadastro'); 
+			return view('paineis.cadastro'); 
 		});
        
 		Route::post('/', 'MedicoController@adicionarMedico')->name('adicionarMedico');

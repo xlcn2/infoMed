@@ -66,7 +66,7 @@ class MedicoController extends Controller
 	{
         $especialidades = Especialidade::where('crm', $crm)->get();
 		$medico = $this->medico->find($crm);
-		return view('atualizar', compact('medico','especialidades'));
+		return view('paineis.atualizar', compact('medico','especialidades'));
 
 	}
 
@@ -74,7 +74,7 @@ class MedicoController extends Controller
         //pagina inicial
 		$medicos = Medico::all();
 		$especialidades = Especialidade::all();
-		return view('tabela', compact('medicos','especialidades'));
+		return view('paineis.tabela', compact('medicos','especialidades'));
 	}
     
     
