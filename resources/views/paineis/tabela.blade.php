@@ -1,31 +1,8 @@
-<html lang="pt">
-<head>
+@extends('layouts.template')
+   
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-    <title>Info-Med</title>
-    <link href="{{ asset('fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	
-    </head>
-    <body>
-
-            <header class="logo">
-                <img src="{{asset('imagens/golfarma.png')}}">
-            </header>
-    <!-- Latest compiled JavaScript -->
-            <section>
+@section('content')
+            
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
                 
                 
@@ -37,14 +14,16 @@
                               
                           <!-- painel tabela -->
                           <div class="table-responsive">
-                               <table class="table table-striped" width="100%" cellspacing="0" style="text-align: center">
+                          <table class="table table-striped" width="100%" cellspacing="0" style="text-align: center">
                               <thead  class="thead-dark">
                                 <tr>
                                   <th>Informações sobre os médicos cadastrados</th>
 
                                 </tr>
-                                   </thead></table>
-                            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
+                                   </thead>
+                            </table>
+                            
+                              <table class="table table-striped" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
                               <thead  class="thead-dark">
                                 <tr>
                                   <th></th>
@@ -56,33 +35,34 @@
                               </thead>
                               <tfoot  class="thead-dark">
                                 <tr>
-                                    <th>Nome</th>
+                                  <th>Nome</th>
                                   <th>CRM</th>
                                   <th>telefone</th>
-                                 <th>especialidades</th>
+                                  <th>especialidades</th>
 
                                   <th style="width: 210px;">Ações</th>
                                 </tr>
-                              </tfoot>
-                              <tbody>
+                               </tfoot>
+                               <tbody>
 
 
                              @foreach($medicos as $medico)
-                                    <tr>
-                                        <td>{{ $medico->nome }}</td>
-                                        <td>{{ $medico->crm }}</td>
-                                        <td>{{ $medico->telefone }}</td>
-                                        <td>@foreach($especialidades as $especialidade)
+                                <tr>
+                                   <td>{{ $medico->nome }}</td>
+                                   <td>{{ $medico->crm }}</td>
+                                   <td>{{ $medico->telefone }}</td>
+                                   <td>@foreach($especialidades as $especialidade)
                                         @if ($medico->crm == $especialidade->crm)
                                             {{ $especialidade->nome }}<br>   
                                         @endif
 
-                            @endforeach </td>
+                            @endforeach 
+                                   </td>
                                          <th  style="width: 210px;">
                                              <a  href="{{ route('procurarMedico', ['crm' => $medico->crm]) }}" class="btn btn-primary" style="height:30px; font-size: 13px; margin: 1px; width: 80px; float: left; ">Editar <i class="far fa-edit"></i></a>
                                              <a  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $medico->crm }}" style="height:30px; font-size: 13px; margin: 1px; width: 80px; float: left; color: white; ">Excluir <i class="far fa-trash-alt"></i>
                                              </a>
-                                        </th>
+                                          </th>
                                   </tr>
 
 
@@ -129,7 +109,7 @@
 
                 </div>
         <!-- Bootstrap core JavaScript-->
-        </section>
+   
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -141,5 +121,4 @@
                                     $('#dataTable').dataTable();
                                 });
                             </script>
-        </body>
-</html>
+    @endsection
